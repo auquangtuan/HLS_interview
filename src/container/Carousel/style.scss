@@ -1,0 +1,17 @@
+.carousel {
+  height: 230px;
+  background-color: var(--background-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-white);
+  gap: 0.5rem;
+  padding: 0 1rem;
+  > h1 {
+    font-size: 2rem;
+  }
+  > span {
+    font-weight: 500;
+  }
+}
