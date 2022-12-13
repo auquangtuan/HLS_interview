@@ -1,4 +1,6 @@
 .buttonComponent {
-    padding: 8px 32px;
-    color: var(--color-white);
+  padding: 0.8rem 5rem;
+  color: var(--color-white);
+  border: none;
+  border-bottom: 1px solid green;
 }

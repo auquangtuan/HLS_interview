@@ -1,7 +1,8 @@
 import React from "react";
 import "./style.scss";
 
-import logo from "../../assets/img/Logo_4x.png";
+import logo from "../../assets/img/logo.png";
+import avatar from "../../assets/img/avatar.png";
 const Header = () => {
   return (
     <header className="header">
@@ -13,7 +14,7 @@ const Header = () => {
           </span>
           <span className="header__right__info--name">Jim HLS</span>
         </div>
-        <img className="header__right__avatar" src={logo} alt="avatar" />
+        <img className="header__right__avatar" src={avatar} alt="avatar" />
       </div>
     </header>
   );

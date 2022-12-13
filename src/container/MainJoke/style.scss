@@ -1,25 +1,24 @@
 .MainJoke {
   width: 100%;
-  background-color: var(--wash);
   max-width: 1050px;
   margin: 0 auto;
-  padding: 3rem;
-  border-bottom: 1px solid var(--primary-color);
+  padding: 4rem;
   .ThisJoke {
     width: 100%;
     padding-bottom: 2rem;
-    font-size: 1.5rem;
-    color: var(--secondary-color);
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    line-height: 1.8rem;
   }
   &__button {
-    width: 100%;
     padding-top: 1rem;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap : 1rem;
     align-items: center;
   }
 }
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 592px) {
   .MainJoke {
     &__button {
       flex-direction: column;
