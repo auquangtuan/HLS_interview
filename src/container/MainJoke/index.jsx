@@ -5,11 +5,10 @@ import { data } from "../../data";
 import "./style.scss";
 import ThisJoke from "./ThisJoke";
 const MainJoke = () => {
-
   const dataArr = data
     .filter((sp) => sp.id !== parseInt(Cookies?.get(sp?.id)?.slice(0)))
     ?.map((item) => item.id);
-  console.log(dataArr)
+  console.log(dataArr);
   const [show, setShow] = useState(dataArr[0]);
   const handleFunnyClick = (id) => {
     Cookies.set(id, `${id}_funny`);
@@ -29,7 +28,9 @@ const MainJoke = () => {
   if (dataArr.length === 0) {
     return (
       <div className="MainJoke">
-        <ThisJoke content="That's all the jokes for today! Come back another day!" />
+        <div className="MainJoke__Container">
+          <ThisJoke content="That's all the jokes for today! Come back another day!" />
+        </div>
       </div>
     );
   }
@@ -40,10 +41,10 @@ const MainJoke = () => {
           !Cookies.get(item.id) && (
             <div key={item.id}>
               {item.id === show && (
-                <>
+                <div className="MainJoke__Container">
                   <ThisJoke content={item.content} />
                   <div
-                    className="spliter"
+                    className="spliter joke_spliter"
                     style={{ width: "80%", margin: "0 auto" }}
                   ></div>
                   <div className="MainJoke__button">
@@ -58,7 +59,7 @@ const MainJoke = () => {
                       onClick={() => handleNotFunnyClick(item.id)}
                     />
                   </div>
-                </>
+                </div>
               )}
             </div>
           )

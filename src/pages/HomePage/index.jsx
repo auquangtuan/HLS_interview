@@ -6,7 +6,7 @@ import "./style.css";
 
 const HomePage = ({ children }) => {
   return (
-    <div>
+    <div className="HomePage">
       <Header />
       {children}
       <Footer />

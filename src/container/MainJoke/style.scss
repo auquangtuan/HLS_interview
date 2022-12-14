@@ -1,29 +1,61 @@
 .MainJoke {
-  width: 100%;
-  max-width: 1050px;
-  margin: 0 auto;
+  width: 100vw;
+  align-self: center;
+  background-color: var(--wash);
   padding: 4rem;
+  border-bottom: 1px solid var(--border-color);
+  &__Container {
+    max-width: 1050px;
+    margin: 0 auto;
+  }
   .ThisJoke {
-    width: 100%;
+    width: 85%;
+    margin: 0 auto;
     padding-bottom: 2rem;
     font-size: 1.3rem;
     color: var(--primary-color);
     line-height: 1.8rem;
   }
   &__button {
-    padding-top: 1rem;
+    padding-top: 3rem;
     display: flex;
     justify-content: center;
     gap : 1rem;
     align-items: center;
   }
+  .joke_spliter {
+    padding: 1.5rem 0;
+  }
 }
 @media only screen and (max-width: 592px) {
   .MainJoke {
     &__button {
-      flex-direction: column;
-      gap: 0.5rem;
-      width: 100%;
+      gap: 2rem;
+    }
+    .buttonComponent {
+      padding: .8rem 2rem;
+    }
+  }
+}
+@media only screen and (max-width: 415px) {
+  .MainJoke {
+    padding: 4rem 2rem;
+    &__button {
+      gap: 1rem;
+    }
+    .buttonComponent {
+      padding: .5rem 1rem;
+    }
+  }
+}
+@media only screen and (max-width: 335px) {
+  .MainJoke {
+    padding: 2rem 1rem;
+    &__button {
+      gap: .5rem;
+    }
+    .buttonComponent {
+      padding: .3rem .5rem;
     }
   }
 }

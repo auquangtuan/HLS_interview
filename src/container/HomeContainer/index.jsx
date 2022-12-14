@@ -6,7 +6,6 @@ const HomeContainer = () => {
   return <div className="HomeContainer">
         <Carousel />
         <MainJoke />
-        <div className="spliter"></div>
   </div>;
 };
 
