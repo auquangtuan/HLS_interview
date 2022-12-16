@@ -15,9 +15,10 @@
     font-size: 1.3rem;
     color: var(--primary-color);
     line-height: 1.8rem;
+    padding-top: 2rem;
   }
   &__button {
-    padding-top: 3rem;
+    padding-top: 5rem;
     display: flex;
     justify-content: center;
     gap: 1rem;
@@ -80,7 +81,7 @@
       padding: 2rem 4rem;
     }
     .buttonComponent {
-      padding: 0.5rem 1rem;
+      padding: 0.7rem 2rem;
     }
   }
 }
@@ -90,7 +91,7 @@
       padding: 2rem 1rem;
     }
     .buttonComponent {
-      padding: 0.5rem 1rem;
+      padding: 0.7rem 2rem;
     }
   }
 }
@@ -98,10 +99,10 @@
   .MainJoke {
     padding: 2rem 1rem;
     &__button {
-      gap: 0.5rem;
+      gap: 2rem;
     }
     .buttonComponent {
-      padding: 0.3rem 0.5rem;
+      padding: 0.5rem 1rem;
     }
   }
 }
