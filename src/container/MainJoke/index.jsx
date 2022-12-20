@@ -1,31 +1,27 @@
 import Cookies from "js-cookie";
 import React, { useState } from "react";
 import Button from "../../components/Button";
-import { data } from "../../data";
+import { useSelector } from "react-redux";
 import "./style.scss";
 import ThisJoke from "./ThisJoke";
+import { useNavigate } from "react-router-dom";
 const MainJoke = () => {
-  const dataArr = data
-    .filter((sp) => sp.id !== parseInt(Cookies?.get(sp?.id)?.slice(0)))
-    ?.map((item) => item.id);
-  console.log(dataArr);
-  const [show, setShow] = useState(dataArr[0]);
-  const handleFunnyClick = (id) => {
-    Cookies.set(id, `${id}_funny`);
-    handleNext();
-  };
-  const handleNotFunnyClick = (id) => {
-    Cookies.set(id, `${id}_notFunny`);
-    handleNext();
-  };
-  const handleNext = () => {
-    setShow(
-      data
-        .filter((sp) => sp.id !== parseInt(Cookies?.get(sp?.id)?.slice(0)))
-        ?.map((item) => item.id)[0]
-    );
-  };
-  if (dataArr.length === 0) {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const { storyList } = useSelector((state) => state.story);
+  const { userStoryAction } = useSelector((state) => state.story);
+  const filterIDStory = userStoryAction?.map((item) => item?.storyID) || [];
+  const arrFilter = storyList?.filter((items) =>
+    filterIDStory?.map((item) => {
+        return item;
+      })
+      .includes(items.id)
+  );
+  const navigate = useNavigate();
+  const [show, setShow] = useState(storyList[0]);
+  const handleFunnyClick = (id) => {};
+  const handleNotFunnyClick = (id) => {};
+  const handleNext = () => {};
+  if (storyList.length === 0) {
     return (
       <div className="MainJoke">
         <div className="MainJoke__Container">
@@ -36,35 +32,50 @@ const MainJoke = () => {
   }
   return (
     <div className="MainJoke">
-      {data.map((item, index) => {
-        return (
-          !Cookies.get(item.id) && (
-            <div key={item.id}>
-              {item.id === show && (
-                <div className="MainJoke__Container">
-                  <ThisJoke content={item.content} />
-                  <div
-                    className="spliter joke_spliter"
-                    style={{ width: "80%", margin: "0 auto" }}
-                  ></div>
-                  <div className="MainJoke__button">
-                    <Button
-                      secondary
-                      content="This is Funny!"
-                      onClick={() => handleFunnyClick(item.id)}
-                    />
-                    <Button
-                      primary
-                      content="This is not funny."
-                      onClick={() => handleNotFunnyClick(item.id)}
-                    />
-                  </div>
+      <div>
+        <div className="MainJoke__Container">
+          {arrFilter.map((item, index) => {
+            return (
+              <>
+                <ThisJoke content={item.story} />
+                <div
+                  className="spliter joke_spliter"
+                  style={{ width: "80%", margin: "0 auto" }}
+                ></div>
+                <div className="MainJoke__button">
+                  {user ? (
+                    <>
+                      <Button
+                        secondary
+                        content="This is Funny!"
+                        onClick={() => handleFunnyClick(item.id)}
+                      />
+                      <Button
+                        primary
+                        content="This is not funny."
+                        onClick={() => handleNotFunnyClick(item.id)}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <Button
+                        secondary
+                        content="Bạn cần đăng nhập để thích, không thích."
+                        onClick={() => navigate("/login")}
+                      />
+                      <Button
+                        primary
+                        content="Chuyện Tiếp."
+                        onClick={() => {}}
+                      />
+                    </>
+                  )}
                 </div>
-              )}
-            </div>
-          )
-        );
-      })}
+              </>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };

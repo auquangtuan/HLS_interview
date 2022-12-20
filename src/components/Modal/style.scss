@@ -1,0 +1,52 @@
+.ModalContainer {
+    min-height: 100vh;
+    min-width: 100vw;
+    top: 0;
+    left: 0;
+    bottom : 0;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    .titleModal {
+        color: #1c1e21;
+        font-size: 32px;
+        line-height: 38px;
+        color: #1c1e21;
+    }
+    .description {
+        color: #606770;
+        font-size: 15px;
+        line-height: 24px;
+        padding: 0.5rem 0;
+    }
+    .spliter {
+        margin: 1rem 0;
+    }
+    .ModalForm {
+        padding: 1rem 2rem;
+        position: relative;
+        margin: 0 auto;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        border-radius: 4px;
+        align-items: center;
+        .closeForm {
+            position: absolute;
+            width: 3px;
+            height: 30px;
+            background-color: #000;
+            right: 4rem;
+            top: 2rem;
+            transform: rotate(45deg);
+            cursor: pointer;
+            &::before {
+                position: absolute;
+                content: '';
+                width: 3px;
+                height: 30px;
+                background-color: #000;
+                transform: rotate(90deg);
+            }
+        }
+    }
+}

@@ -1,0 +1,35 @@
+.registerForm {
+    .formContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        .dateOfBirthdayRegister {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .hoverRegister {
+            > .HoverLink {
+                padding: 0;
+                > .linkDescreption{
+                    width: 42vw;
+                }
+            }
+        }
+    }
+    > .containerBtn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .buttonComponent {
+            margin-top: 2rem;
+            width: 100%;
+            border-radius: 10px;
+        }
+    }
+    .protect {
+        color: #777;
+        font-size: 11px;
+        padding-bottom: 1rem;
+    }
+}

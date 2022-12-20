@@ -4,6 +4,7 @@ const Button = ({ className, content, primary, secondary, color , onClick}) => {
   return (
     <button
       className={`buttonComponent ${className}`}
+      onClick={onClick}
       style={{
         backgroundColor: ` ${
           primary
@@ -13,7 +14,6 @@ const Button = ({ className, content, primary, secondary, color , onClick}) => {
             : color
         }`,
       }}
-      onClick={onClick}
     >
       {content}
     </button>
