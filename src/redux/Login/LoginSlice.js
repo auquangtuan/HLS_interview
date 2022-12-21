@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "node_modules/axios";
+import axios from "axios";
 
 const LoginSlice = createSlice({
   name: "login",
@@ -32,15 +32,32 @@ export const login = createAsyncThunk("login/loginSlice", async (data) => {
     });
 });
 
-export const registers = createAsyncThunk("register/loginSlice", async (data) => {
-  return await axios
-    .post(`http://localhost:3333/api/users/register`, data)
-    .then((res) => {
-      return res.data;
-    })
-    .catch((error) => {
-      return error.response.data;
-    });
-});
+export const registers = createAsyncThunk(
+  "register/loginSlice",
+  async (data) => {
+    return await axios
+      .post(`http://localhost:3333/api/users/register`, data)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((error) => {
+        return error.response.data;
+      });
+  }
+);
+export const changePass = createAsyncThunk(
+  "changePass/loginSlice",
+  async (data) => {
+    console.log(data)
+    return await axios
+      .post(`http://localhost:3333/api/users/changePass/${data[0]}`, data[1])
+      .then((res) => {
+        return res.data;
+      })
+      .catch((error) => {
+        return error.response.data;
+      });
+  }
+);
 export const { logout } = LoginSlice.actions;
 export default LoginSlice;

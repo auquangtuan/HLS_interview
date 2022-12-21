@@ -1,6 +1,7 @@
 import Admin from '../container/Admin';
+import EditStory from '../container/Admin/EditStory';
 import HomePage from '../container/HomeContainer';
-import History from '../pages/History';
+import ChangePass from '../pages/ChangePass';
 import Login from '../pages/Login';
 
 const mainRouter = [
@@ -20,10 +21,13 @@ const mainRouter = [
                 Component: Admin,
             },
             {
-                path: '/history',
-                Component: History,
+                path: '/changePass',
+                Component: ChangePass,
+            },
+            {
+                path: '/addStory',
+                Component: EditStory,
             }
-
         ],
     },
 ];

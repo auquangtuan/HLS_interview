@@ -6,6 +6,7 @@ import Button from "../Button";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../redux/Login/LoginSlice";
+import { readStory } from "../../redux/Main/HomeSlice";
 const Header = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.login);
@@ -17,6 +18,7 @@ const Header = () => {
   };
   const handleLogout = () => {
     dispatch(logout());
+    dispatch(readStory());
   };
   useEffect(() => {}, [user]);
   const renderUser = () => {
@@ -43,22 +45,13 @@ const Header = () => {
                   </button>
                 )}
                 <button
-                  onClick={() => {}}
+                  onClick={() => navigate("/changePass")}
                   style={{
                     border: "none",
                     cursor: "pointer",
                   }}
                 >
                   Đổi Mật Khẩu
-                </button>
-                <button
-                  onClick={() => navigate("/history")}
-                  style={{
-                    border: "none",
-                    cursor: "pointer",
-                  }}
-                >
-                  Lịch Sử
                 </button>
                 <button
                   onClick={handleLogout}

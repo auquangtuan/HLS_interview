@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import HomePage from "../../pages/HomePage";
-import { readStory, userStoryAction } from "../../redux/Main/HomeSlice";
+import { readStory, userStoryActions } from "../../redux/Main/HomeSlice";
 import Carousel from "../Carousel";
 import MainJoke from "../MainJoke";
 import "./style.scss";
@@ -10,7 +10,7 @@ const HomeContainer = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(readStory())
-    dispatch(userStoryAction(id))
+    id && dispatch(userStoryActions(id))
   }, [dispatch, id])
   return (
     <HomePage
