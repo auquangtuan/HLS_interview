@@ -1,23 +1,8 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { publicRouter } from "./routes";
+import HomeContainer from "./container/HomeContainer";
+import HomePage from "./pages/HomePage";
+
 function App() {
-  return (
-    <Router>
-      <Routes>
-        {publicRouter.map((routes) => {
-          return routes.map((route, index) => {
-            return route.children
-              ? route.children.map(({ path, Component }, index) => {
-                  return (
-                    <Route path={path} element={<Component />} key={index} />
-                  );
-                })
-              : null;
-          });
-        })}
-      </Routes>
-    </Router>
-  );
+  return <HomePage children={<HomeContainer />} />;
 }
 
 export default App;

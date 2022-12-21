@@ -11,13 +11,11 @@ button {
 :root {
   --primary-color: rgb(127, 123, 123);
   --secondary-color: #B8B8B8;
-  --bg-secondary: #f0f2f5;
   --wash: #fcfcfc;
   --color-white: #fff;
   --background-primary: #29B363;
   --background-secondary: #1877f2;
   --border-color : #eeeeee;
-  --bg-red: #be4b49;
 }
 .spliter {
   border-bottom: 1px solid var(--border-color);

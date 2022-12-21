@@ -1,59 +1,31 @@
-import React, { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import React, { useState } from "react";
 import Button from "../../components/Button";
-import { useDispatch, useSelector } from "react-redux";
+import { data } from "../../data";
 import "./style.scss";
 import ThisJoke from "./ThisJoke";
-import { useNavigate } from "react-router-dom";
-import { actionFunny, readStory } from "../../redux/Main/HomeSlice";
 const MainJoke = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const { storyList } = useSelector((state) => state.story);
-  const { userStoryAction } = useSelector((state) => state.story);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const arrRender =
-    user && userStoryAction.length > 0
-      ? storyList?.filter(
-          (items) =>
-            !userStoryAction
-              ?.map((item) => item?.storyID)
-              ?.map((item) => {
-                return item;
-              })
-              .includes(items.id)
-        )
-      : storyList;
-
-  const [show, setShow] = useState(0);
-  const handleFunnyClick = async (id) => {
-    const data = {
-      userID: user.id,
-      storyID: id,
-      actionsID: 1,
-    };
-    const res = await dispatch(actionFunny(data));
-    if (res.payload.id) {
-      setShow(show + 1);
-    }
+  const dataArr = data
+    .filter((sp) => sp.id !== parseInt(Cookies?.get(sp?.id)?.slice(0)))
+    ?.map((item) => item.id);
+  console.log(dataArr);
+  const [show, setShow] = useState(dataArr[0]);
+  const handleFunnyClick = (id) => {
+    Cookies.set(id, `${id}_funny`);
+    handleNext();
   };
-
-  const handleNotFunnyClick = async (id) => {
-    const data = {
-      userID: user.id,
-      storyID: id,
-      actionsID: 2,
-    };
-    const res = await dispatch(actionFunny(data));
-    if (res.payload.id) {
-      setShow(show + 1);
-    }
+  const handleNotFunnyClick = (id) => {
+    Cookies.set(id, `${id}_notFunny`);
+    handleNext();
   };
-
   const handleNext = () => {
-    setShow(show + 1);
+    setShow(
+      data
+        .filter((sp) => sp.id !== parseInt(Cookies?.get(sp?.id)?.slice(0)))
+        ?.map((item) => item.id)[0]
+    );
   };
-  if (arrRender.length === 0) {
+  if (dataArr.length === 0) {
     return (
       <div className="MainJoke">
         <div className="MainJoke__Container">
@@ -64,54 +36,35 @@ const MainJoke = () => {
   }
   return (
     <div className="MainJoke">
-      <div>
-        <div className="MainJoke__Container">
-          {arrRender?.map((item, index) => {
-            return (
-              <>
-                {index === show && (
-                  <>
-                    <ThisJoke content={item.story} />
-                    <div
-                      className="spliter joke_spliter"
-                      style={{ width: "80%", margin: "0 auto" }}
-                    ></div>
-                    <div className="MainJoke__button">
-                      {user ? (
-                        <>
-                          <Button
-                            secondary
-                            content="This is Funny!"
-                            onClick={() => handleFunnyClick(item.id)}
-                          />
-                          <Button
-                            primary
-                            content="This is not funny."
-                            onClick={() => handleNotFunnyClick(item.id)}
-                          />
-                        </>
-                      ) : (
-                        <>
-                          <Button
-                            secondary
-                            content="Bạn cần đăng nhập để thích, không thích."
-                            onClick={() => navigate("/login")}
-                          />
-                          <Button
-                            primary
-                            content="Chuyện Tiếp."
-                            onClick={() => handleNext()}
-                          />
-                        </>
-                      )}
-                    </div>
-                  </>
-                )}
-              </>
-            );
-          })}
-        </div>
-      </div>
+      {data.map((item, index) => {
+        return (
+          !Cookies.get(item.id) && (
+            <div key={item.id}>
+              {item.id === show && (
+                <div className="MainJoke__Container">
+                  <ThisJoke content={item.content} />
+                  <div
+                    className="spliter joke_spliter"
+                    style={{ width: "80%", margin: "0 auto" }}
+                  ></div>
+                  <div className="MainJoke__button">
+                    <Button
+                      secondary
+                      content="This is Funny!"
+                      onClick={() => handleFunnyClick(item.id)}
+                    />
+                    <Button
+                      primary
+                      content="This is not funny."
+                      onClick={() => handleNotFunnyClick(item.id)}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          )
+        );
+      })}
     </div>
   );
 };

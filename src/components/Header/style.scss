@@ -15,39 +15,11 @@
       flex-direction: column;
       align-items: flex-end;
       justify-content: center;
-      gap: .3rem;
       &__handicrafted {
         color: var(--secondary-color);
       }
       &--name {
         color: var(--primary--color);
-      }
-      .More {
-        border: 1px solid #ccc;
-        padding: 2px 16px;
-        border-radius: 4px;
-        cursor: pointer;
-        position: relative;
-        &__hiddent {
-          display: none;
-        }
-        &:hover {
-          .More__hiddent {
-            width : 150px;
-            height : 100%;
-            background-color: #fff;
-            position: absolute;
-            display: block;
-            >button {
-              width : 100%;
-              background-color : #fff;
-              padding : 1rem;
-              &:hover {
-                background-color: #ccc;
-              }
-            }
-          }
-        }
       }
     }
     &__avatar {
